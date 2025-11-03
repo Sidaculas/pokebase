@@ -1,5 +1,6 @@
 import React from "react";
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useFavorites } from "../../context/FavoritesContext";
 
 export default function Favorite() {
@@ -14,17 +15,19 @@ export default function Favorite() {
 	}
 
 	return (
-		<FlatList
-			data={favorites}
-			keyExtractor={(item) => item.id.toString()}
-			contentContainerStyle={styles.listContainer}
-			renderItem={({ item }) => (
-				<View style={styles.card}>
-					<Image source={{ uri: item.image }} style={styles.image} />
-					<Text style={styles.name}>{item.name}</Text>
-				</View>
-			)}
-		/>
+		<SafeAreaView>
+			<FlatList
+				data={favorites}
+				keyExtractor={(item) => item.id.toString()}
+				contentContainerStyle={styles.listContainer}
+				renderItem={({ item }) => (
+					<View style={styles.card}>
+						<Image source={{ uri: item.image }} style={styles.image} />
+						<Text style={styles.name}>{item.name}</Text>
+					</View>
+				)}
+			/>
+		</SafeAreaView>
 	);
 }
 

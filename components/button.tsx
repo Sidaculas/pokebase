@@ -4,7 +4,6 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
-	withSequence,
 	withSpring,
 	withTiming,
 } from "react-native-reanimated";
@@ -30,11 +29,6 @@ export default function CatchButton({ onPress, isActive }: any) {
 		glow.value = withTiming(0.5, { duration: 200 });
 	};
 
-	const onCatch = () => {
-		scale.value = withSequence(withSpring(1.2), withSpring(1));
-		console.log("clicked");
-	};
-
 	return (
 		<AnimatedTouchable
 			activeOpacity={0.9}
@@ -46,7 +40,7 @@ export default function CatchButton({ onPress, isActive }: any) {
 			<MaterialIcons
 				name="favorite"
 				size={30}
-				color={isActive ? "#000000" : "#ff4d6d"}
+				color={isActive ? "#ff4d6d" : "#000000"}
 			/>
 		</AnimatedTouchable>
 	);

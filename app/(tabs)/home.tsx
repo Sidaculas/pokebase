@@ -1,3 +1,4 @@
+import SearchBar from "@/components/SearchBar";
 import { colorType } from "@/lib/colorTypes";
 import { getPokemons } from "@/lib/fetchData";
 import { Pokemon } from "@/types/pokemon.types";
@@ -10,7 +11,6 @@ import {
 	FlatList,
 	StyleSheet,
 	Text,
-	TextInput,
 	View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -96,12 +96,7 @@ export default function Index() {
 				<Text style={styles.header}>Pokébase</Text>
 				<Text style={styles.subHeader}>Search for a Pokémon by name</Text>
 
-				<TextInput
-					style={styles.searchInput}
-					placeholder="🔎 Search by Name"
-					value={searchTerm}
-					onChangeText={setSearchTerm}
-				/>
+				<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 			</View>
 
 			<FlatList
