@@ -11,7 +11,7 @@ import Animated, {
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
-export default function CatchButton() {
+export default function CatchButton({ onPress, isActive }: any) {
 	const scale = useSharedValue(1);
 	const glow = useSharedValue(0);
 
@@ -40,10 +40,14 @@ export default function CatchButton() {
 			activeOpacity={0.9}
 			onPressIn={onPressIn}
 			onPressOut={onPressOut}
-			onPress={onCatch}
+			onPress={onPress}
 			style={[styles.button, animatedStyle]}
 		>
-			<MaterialIcons name="favorite" size={30} color="#ff4d6d" />
+			<MaterialIcons
+				name="favorite"
+				size={30}
+				color={isActive ? "#000000" : "#ff4d6d"}
+			/>
 		</AnimatedTouchable>
 	);
 }

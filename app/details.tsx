@@ -1,3 +1,4 @@
+import { useFavorites } from "@/context/FavoritesContext";
 import { colorType } from "@/lib/colorTypes";
 import { getSinglePokemon } from "@/lib/fetchData";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -22,6 +23,15 @@ const Details = () => {
 	const [pokemon, setPokemon] = useState<any>(null);
 	const [loading, setLoading] = useState(false);
 	const [activeTab, setActiveTab] = useState("Info");
+	const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
+	const handleFavorite = () => {
+		if (isFavorite(pokemon.id)) {
+			removeFavorite(pokemon.id);
+		} else {
+			addFavorite(pokemon);
+		}
+	};
 
 	const loadPokemon = async () => {
 		if (loading) return;
@@ -217,7 +227,10 @@ const Details = () => {
 					{/* Tab Content */}
 					<View style={styles.content}>{renderContent()}</View>
 
-					<CatchButton />
+					<CatchButton
+						onPress={handleFavorite}
+						isActive={isFavorite(pokemon.id)}
+					/>
 				</ScrollView>
 			</SafeAreaView>
 		</>
